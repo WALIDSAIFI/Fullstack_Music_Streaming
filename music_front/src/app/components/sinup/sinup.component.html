@@ -1,0 +1,72 @@
+<div class="flex min-h-[80vh] flex-col justify-center px-4 py-6 lg:px-6">
+  <div class="mx-auto w-full sm:max-w-lg bg-blue-50 p-6 rounded-lg border-2 border-blue-500 shadow-lg">
+    <h2 class="text-center text-2xl font-bold leading-8 tracking-tight text-blue-900 mb-4">
+      Créer un compte
+    </h2>
+
+    <div class="mt-6">
+      <form class="space-y-4 w-full" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="grid grid-cols-1 gap-4">
+          <div>
+            <label for="login" class="block text-base font-medium leading-6 text-blue-900">Nom d'utilisateur</label>
+            <div class="mt-2">
+              <input id="login" 
+                     formControlName="login" 
+                     type="text" 
+                     required 
+                     class="form-input bg-white text-base py-1.5" 
+                     placeholder="Choisissez un nom d'utilisateur">
+            </div>
+          </div>
+
+
+          </div>
+
+          <div>
+            <label for="password" class="block text-base font-medium leading-6 text-blue-900">Mot de passe</label>
+            <div class="mt-2">
+              <input id="password" 
+                     formControlName="password" 
+                     type="password" 
+                     required 
+                     class="form-input bg-white text-base py-1.5" 
+                     placeholder="Créez votre mot de passe">
+            </div>
+          </div>
+
+          <div>
+            <label for="confirmPassword" class="block text-base font-medium leading-6 text-blue-900">Confirmer le mot de passe</label>
+            <div class="mt-2">
+              <input id="confirmPassword" 
+                     formControlName="confirmPassword" 
+                     type="password" 
+                     required 
+                     class="form-input bg-white text-base py-1.5" 
+                     placeholder="Confirmez votre mot de passe">
+            </div>
+          </div>
+
+        <div class="mt-6">
+          <button type="submit" 
+                
+                  class="submit-button bg-green-600 hover:bg-green-700 text-base py-2">
+            {{ isSubmitting ? 'Création en cours...' : 'S\'inscrire' }}
+          </button>
+        </div>
+      </form>
+
+      <div class="mt-4 text-center">
+        <p class="text-sm text-gray-600">
+          Vous avez déjà un compte ? 
+          <a routerLink="/login" class="font-semibold text-blue-600 hover:text-blue-500">
+            Se connecter
+          </a>
+        </p>
+      </div>
+
+      <div class="mt-2" *ngIf="errorMessage" class="text-center">
+        <p class="text-red-600 text-sm font-medium">{{ errorMessage }}</p>
+      </div>
+    </div>
+  </div>
+</div>
