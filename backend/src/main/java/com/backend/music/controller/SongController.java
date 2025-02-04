@@ -18,6 +18,9 @@ import org.springframework.http.ContentDisposition;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", methods = {
+        RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE
+})
 public class SongController {
     
     private final SongService songService;

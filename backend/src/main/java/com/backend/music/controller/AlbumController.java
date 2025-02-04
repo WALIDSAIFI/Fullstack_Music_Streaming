@@ -12,15 +12,18 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", methods = {
+        RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE
+})
 public class AlbumController {
-    
+
     private final AlbumService albumService;
-    
+
     @GetMapping("/albums")
     public ResponseEntity<Page<AlbumDTO>> getAllAlbums(Pageable pageable) {
         return ResponseEntity.ok(albumService.getAllAlbums(pageable));
     }
-    
+
     @GetMapping("/albums/search")
     public ResponseEntity<Page<AlbumDTO>> searchAlbums(
             @RequestParam(required = false) String title,
@@ -36,28 +39,30 @@ public class AlbumController {
         }
         return ResponseEntity.ok(albumService.getAllAlbums(pageable));
     }
-    
+
     @GetMapping("/albums/{id}")
     public ResponseEntity<AlbumDTO> getAlbumById(@PathVariable String id) {
         return ResponseEntity.ok(albumService.getAlbumById(id));
     }
-    
+
     @PostMapping("/albums")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<AlbumDTO> createAlbum(@RequestBody AlbumDTO albumDTO) {
-        return ResponseEntity.ok(albumService.createAlbum(albumDTO));
+        System.out.println("Création d'album reçue: " + albumDTO); // Log pour debug
+        AlbumDTO created = albumService.createAlbum(albumDTO);
+        System.out.println("Album créé: " + created); // Log pour debug
+        return ResponseEntity.ok(created);
     }
-    
+
     @PutMapping("/albums/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<AlbumDTO> updateAlbum(@PathVariable String id, @RequestBody AlbumDTO albumDTO) {
         return ResponseEntity.ok(albumService.updateAlbum(id, albumDTO));
     }
-    
+
     @DeleteMapping("/albums/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteAlbum(@PathVariable String id) {
         albumService.deleteAlbum(id);
         return ResponseEntity.noContent().build();
     }
-} 
+}
