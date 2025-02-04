@@ -132,4 +132,9 @@ export class AuthService {
   getToken(): string | null {
     return localStorage.getItem('user-token');
   }
+
+  isLoggedIn(): boolean {
+    const token = localStorage.getItem('user-token');
+    return !!token; // Retourne true si le token existe
+  }
 } 

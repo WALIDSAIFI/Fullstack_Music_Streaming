@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { SinupComponent } from './components/sinup/sinup.component';
 import { BiblioComponent } from './components/biblio/biblio.component';
+import { AddalbumComponent } from './components/addalbum/addalbum.component';
+import { AddtrakComponent } from './components/addtrak/addtrak.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -17,5 +19,7 @@ export const routes: Routes = [
       { path: 'search', component: BiblioComponent }
     ]
   },
+  { path: 'add-album', component: AddalbumComponent },
+  { path: 'add-track', component: AddtrakComponent },
   { path: '**', redirectTo: '/login' } // Route par défaut si l'URL n'existe pas
 ];

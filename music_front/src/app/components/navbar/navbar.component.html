@@ -16,20 +16,22 @@
       <div class="flex items-center">
         <!-- Menu principal -->
         <div class="hidden md:flex space-x-4">
-          <a routerLink="/biblio/playlists" 
+          <a routerLink="/add-album" 
              routerLinkActive="bg-green-700"
-             class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium">
-            Playlists
+             class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            Ajouter Album
           </a>
-          <a routerLink="/biblio/favorites" 
+          <!-- Nouveau lien pour ajouter une piste -->
+          <a routerLink="/add-track" 
              routerLinkActive="bg-green-700"
-             class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium">
-            Favoris
-          </a>
-          <a routerLink="/biblio/search" 
-             routerLinkActive="bg-green-700"
-             class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium">
-            Rechercher
+             class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+            </svg>
+            Ajouter Piste
           </a>
         </div>
 
@@ -50,20 +52,22 @@
   <!-- Menu mobile -->
   <div class="md:hidden">
     <div class="px-2 pt-2 pb-3 space-y-1">
-      <a routerLink="/biblio/playlists" 
+      <a routerLink="/add-album" 
          routerLinkActive="bg-green-700"
-         class="text-white hover:text-green-200 block px-3 py-2 rounded-md text-base font-medium">
-        Playlists
+         class="text-white hover:text-green-200 block px-3 py-2 rounded-md text-base font-medium flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+        Ajouter Album
       </a>
-      <a routerLink="/biblio/favorites" 
+      <!-- Nouveau lien pour ajouter une piste dans le menu mobile -->
+      <a routerLink="/add-track" 
          routerLinkActive="bg-green-700"
-         class="text-white hover:text-green-200 block px-3 py-2 rounded-md text-base font-medium">
-        Favoris
-      </a>
-      <a routerLink="/biblio/search" 
-         routerLinkActive="bg-green-700"
-         class="text-white hover:text-green-200 block px-3 py-2 rounded-md text-base font-medium">
-        Rechercher
+         class="text-white hover:text-green-200 block px-3 py-2 rounded-md text-base font-medium flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+        </svg>
+        Ajouter Piste
       </a>
     </div>
   </div>

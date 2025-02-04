@@ -1,0 +1,93 @@
+<div class="flex flex-col min-h-screen">
+  <app-navbar></app-navbar>
+  
+  <main class="flex-1 bg-gray-100">
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Ajouter une nouvelle chanson</h2>
+        
+        <form [formGroup]="songForm" (ngSubmit)="onSubmit()" class="space-y-6">
+          <div class="form-group">
+            <label for="title" class="block text-sm font-medium text-gray-700">Titre</label>
+            <input 
+              id="title"
+              type="text"
+              formControlName="title"
+              placeholder="Entrez le titre de la chanson"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+            >
+            <div class="text-red-500 text-sm mt-1" *ngIf="songForm.get('title')?.errors?.['required'] && songForm.get('title')?.touched">
+              Le titre est requis
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="albumId" class="block text-sm font-medium text-gray-700">ID de l'album</label>
+            <input 
+              id="albumId"
+              type="text"
+              formControlName="albumId"
+              placeholder="Entrez l'ID de l'album"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+            >
+            <div class="text-red-500 text-sm mt-1" *ngIf="songForm.get('albumId')?.errors?.['required'] && songForm.get('albumId')?.touched">
+              L'ID de l'album est requis
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="trackNumber" class="block text-sm font-medium text-gray-700">Numéro de piste</label>
+            <input 
+              id="trackNumber"
+              type="number"
+              formControlName="trackNumber"
+              placeholder="Entrez le numéro de piste"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+            >
+            <div class="text-red-500 text-sm mt-1" *ngIf="songForm.get('trackNumber')?.errors && songForm.get('trackNumber')?.touched">
+              <span *ngIf="songForm.get('trackNumber')?.errors?.['required']">Le numéro de piste est requis</span>
+              <span *ngIf="songForm.get('trackNumber')?.errors?.['min']">Le numéro de piste doit être supérieur à 0</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="audioFile" class="block text-sm font-medium text-gray-700">Fichier audio</label>
+            <input 
+              id="audioFile"
+              type="file"
+              accept="audio/*"
+              (change)="onFileSelected($event)"
+              class="mt-1 block w-full text-sm text-gray-500
+                file:mr-4 file:py-2 file:px-4
+                file:rounded-full file:border-0
+                file:text-sm file:font-semibold
+                file:bg-green-50 file:text-green-700
+                hover:file:bg-green-100"
+            >
+            <div class="text-sm text-gray-500 mt-1" *ngIf="selectedFile">
+              Fichier sélectionné: {{ selectedFile.name }}
+            </div>
+          </div>
+
+          <div class="text-red-500 text-center" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div>
+
+          <div class="flex justify-center">
+            <button 
+              type="submit" 
+              [disabled]="!songForm.valid || !selectedFile || loading"
+              class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <svg *ngIf="loading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Ajouter la chanson
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>

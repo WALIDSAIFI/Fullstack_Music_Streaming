@@ -1,0 +1,76 @@
+<div class="flex flex-col min-h-screen">
+  <app-navbar></app-navbar>
+  
+  <main class="flex-1 bg-gray-100">
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Ajouter un nouvel album</h2>
+        
+        <form [formGroup]="albumForm" (ngSubmit)="onSubmit()" class="space-y-6">
+          <div class="form-group">
+            <label for="title" class="block text-sm font-medium text-gray-700">Titre</label>
+            <input 
+              id="title"
+              type="text"
+              formControlName="title"
+              placeholder="Entrez le titre de l'album"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+            >
+            <div class="text-red-500 text-sm mt-1" *ngIf="albumForm.get('title')?.errors?.['required'] && albumForm.get('title')?.touched">
+              Le titre est requis
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="artist" class="block text-sm font-medium text-gray-700">Artiste</label>
+            <input 
+              id="artist"
+              type="text"
+              formControlName="artist"
+              placeholder="Entrez le nom de l'artiste"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+            >
+            <div class="text-red-500 text-sm mt-1" *ngIf="albumForm.get('artist')?.errors?.['required'] && albumForm.get('artist')?.touched">
+              L'artiste est requis
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="year" class="block text-sm font-medium text-gray-700">Année</label>
+            <input 
+              id="year"
+              type="number"
+              formControlName="year"
+              placeholder="Entrez l'année de sortie"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+            >
+            <div class="text-red-500 text-sm mt-1" *ngIf="albumForm.get('year')?.errors && albumForm.get('year')?.touched">
+              <span *ngIf="albumForm.get('year')?.errors?.['required']">L'année est requise</span>
+              <span *ngIf="albumForm.get('year')?.errors?.['min'] || albumForm.get('year')?.errors?.['max']">
+                L'année doit être entre 1900 et {{ currentYear }}
+              </span>
+            </div>
+          </div>
+
+          <div class="text-red-500 text-center" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div>
+
+          <div class="flex justify-center">
+            <button 
+              type="submit" 
+              [disabled]="!albumForm.valid"
+              class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <svg *ngIf="loading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Ajouter l'album
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
